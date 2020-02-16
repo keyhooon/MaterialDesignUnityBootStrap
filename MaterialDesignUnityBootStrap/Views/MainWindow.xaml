@@ -1,0 +1,212 @@
+﻿<Window
+    x:Class="Health_Monitoring.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:infra="clr-namespace:WpfInfrastructure.Infrastructure;assembly=WpfInfrastructure"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:xamlBehaviors="clr-namespace:WpfInfrastructure.Behaviors;assembly=WpfInfrastructure"
+    x:Name="Window"
+    Title="MainWindow"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="NoResize"
+    TextElement.FontSize="14"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowState="Maximized"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources />
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <materialDesign:DrawerHost
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="2"
+            IsLeftDrawerOpen="{Binding IsChecked, ElementName=MenuToggleButton}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="200">
+                    <ToggleButton
+                        Margin="16"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Top"
+                        IsChecked="{Binding IsChecked, ElementName=MenuToggleButton, Mode=TwoWay}"
+                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ContentControl prism:RegionManager.RegionName="ContentMap" />
+                    </ScrollViewer>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <materialDesign:ColorZone
+                    Padding="16,4"
+                    HorizontalAlignment="Stretch"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    DockPanel.Dock="Top"
+                    Mode="PrimaryMid">
+                    <i:Interaction.Behaviors>
+                        <xamlBehaviors:DragMoveBehavior />
+                        <xamlBehaviors:WindowMaximizerBehavior />
+                    </i:Interaction.Behaviors>
+                    <Grid>
+                        <DockPanel>
+                            <ToggleButton
+                                x:Name="MenuToggleButton"
+                                IsChecked="False"
+                                Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            <Button
+                                Margin="4"
+                                Command="{Binding Source={x:Static infra:WindowCommands.CloseWindowCommand}}"
+                                CommandParameter="{Binding ElementName=Window}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}">
+                                <materialDesign:PackIcon Kind="WindowClose" />
+                            </Button>
+                            <Button
+                                Margin="4"
+                                Command="{Binding Source={x:Static infra:WindowCommands.MaximizedWindowCommand}}"
+                                CommandParameter="{Binding ElementName=Window}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                                <materialDesign:PackIcon Kind="WindowRestore" />
+                            </Button>
+                            <Button
+                                Margin="4"
+                                VerticalAlignment="Center"
+                                Command="{Binding Source={x:Static infra:WindowCommands.MinimizedWindowCommand}}"
+                                CommandParameter="{Binding ElementName=Window}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                                <materialDesign:PackIcon Kind="WindowMinimize" />
+                            </Button>
+                            <Button
+                                Margin="4"
+                                Command="{Binding PaletteSelectorShowCommand}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                                <materialDesign:PackIcon Kind="FormatPaint" />
+                            </Button>
+                            <materialDesign:PopupBox
+                                DockPanel.Dock="Right"
+                                PlacementMode="BottomAndAlignRightEdges"
+                                StaysOpen="False"
+                                Style="{StaticResource MaterialDesignPopupBox}">
+                                <ListBox />
+                            </materialDesign:PopupBox>
+                        </DockPanel>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="24"
+                            TextOptions.TextRenderingMode="Aliased">
+                            <Run
+                                FontFamily="Andalus"
+                                FontStretch="ExtraExpanded"
+                                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                Text="Health Monitoring" />
+                        </TextBlock>
+                    </Grid>
+                </materialDesign:ColorZone>
+                <ContentControl prism:RegionManager.RegionName="Header" DockPanel.Dock="Top" />
+                <Separator
+                    BorderBrush="{StaticResource PrimaryHueDarkBrush}"
+                    BorderThickness="1"
+                    DockPanel.Dock="Top" />
+                <ToolBarTray prism:RegionManager.RegionName="ToolBar" DockPanel.Dock="Top" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.ColumnSpan="3"
+                        MinHeight="20"
+                        Orientation="Vertical" />
+                    <materialDesign:Transitioner
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+                        prism:RegionManager.RegionName="Content"
+                        ForceCursor="True"
+                        SelectedIndex="0">
+                        <materialDesign:Transitioner.Resources>
+                            <Style BasedOn="{StaticResource {x:Type materialDesign:TransitionerSlide}}" TargetType="{x:Type materialDesign:TransitionerSlide}">
+                                <Setter Property="ForwardWipe">
+                                    <Setter.Value>
+                                        <materialDesign:SlideWipe Direction="Right" Duration="0:0:.7" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BackwardWipe">
+                                    <Setter.Value>
+                                        <materialDesign:SlideWipe Direction="Left" Duration="0:0:.7" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="OpeningEffect">
+                                    <Setter.Value>
+                                        <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:.7" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </materialDesign:Transitioner.Resources>
+                    </materialDesign:Transitioner>
+                    <GridSplitter
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Stretch"
+                        BorderBrush="{StaticResource PrimaryHueDarkBrush}"
+                        BorderThickness="1"
+                        ResizeBehavior="BasedOnAlignment"
+                        ResizeDirection="Columns" />
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ToolsControl" prism:RegionManager.RegionName="Tools" />
+                    </ScrollViewer>
+                    <StackPanel
+                        Grid.Row="2"
+                        Margin="4"
+                        FlowDirection="RightToLeft"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="4"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                            CommandTarget="{Binding ElementName=Transitioner}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Kind="StepForward" />
+                        </Button>
+                        <Button
+                            Margin="4"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            CommandTarget="{Binding ElementName=Transitioner}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Kind="StepBackward" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
+</Window>
