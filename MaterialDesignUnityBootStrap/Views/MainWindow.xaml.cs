@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Health_Monitoring.Views
+namespace MaterialDesignUnityBootStrap.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

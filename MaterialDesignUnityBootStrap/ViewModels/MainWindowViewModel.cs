@@ -1,28 +1,30 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using CompositeContentNavigatorServiceModule.Services;
+using MaterialDesignThemes.Wpf;
+using MaterialDesignUnityBootStrap.Config;
+using MaterialDesignUnityBootStrap.Views;
+using Microsoft.Extensions.Configuration;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
-using Health_Monitoring.Views;
-using WpfInfrastructure.Service.CompositeMapNavigator;
-
-namespace Health_Monitoring.ViewModels
+namespace MaterialDesignUnityBootStrap.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private readonly IRegionManager _regionManager;
-        private readonly CompositeMapNavigatorService _compositeMapNavigatorService;
-
-
-        public MainWindowViewModel(IRegionManager regionManager, CompositeMapNavigatorService compositeMapNavigatorService)
+        private readonly MainWindowConfig _mainWindowConfig;
+        public MainWindowViewModel(IConfigurationRoot configurationRoot)
         {
-            _regionManager = regionManager;
-            _compositeMapNavigatorService = compositeMapNavigatorService;
-
-
+            var section = configurationRoot.GetSection("MainWindowConfig");
+            if (section.Exists())
+                _mainWindowConfig = ConfigurationBinder.Get<MainWindowConfig>(section);
         }
 
 
+  
+        public string Header
+        {
+            get { return _mainWindowConfig.Name; }
+        }
 
 
         private DelegateCommand _paletteSelectorShowCommand;

@@ -9,11 +9,10 @@ using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
 
-namespace Health_Monitoring.ViewModels
+namespace MaterialDesignUnityBootStrap.ViewModels
 {
     public class PaletteSelectorViewModel : BindableBase
     {
-        private static readonly PaletteHelper PaletteHelper = new PaletteHelper();
         private DelegateCommand<bool> _toggleBaseCommand;
         private DelegateCommand<Swatch> _applyPrimaryCommand;
         private DelegateCommand<Swatch> _applyAccentCommand;

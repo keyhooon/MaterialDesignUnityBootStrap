@@ -1,0 +1,19 @@
+﻿{
+  "MainWindowConfig": {
+    "Name": "DemoApp"
+  },
+  "ContentNavigatorConfig": {
+    "HasRoot": "True",
+    "RootName": "Demo Root"
+  },
+  "section2": {
+    "subsection0": {
+      "key0": "value",
+      "key1": "value"
+    },
+    "subsection1": {
+      "key0": "value",
+      "key1": "value"
+    }
+  }
+}
