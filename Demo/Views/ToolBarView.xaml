@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://prismlibrary.com/"
-    prism:ViewModelLocator.AutoWireViewModel="True">
-    <TextBlock Text="Toolbar1" />
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Style="{StaticResource MaterialDesignToolBar}">
+    <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Text="aaaa" />
     <Button Content="Button 1" />
 </ToolBar>
