@@ -38,7 +38,7 @@
                         IsChecked="{Binding IsChecked, ElementName=MenuToggleButton, Mode=TwoWay}"
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ContentControl prism:RegionManager.RegionName="ContentMap" />
+                        <ContentControl prism:RegionManager.RegionName="ContentMapRegion" />
                     </ScrollViewer>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
@@ -112,16 +112,16 @@
                         </TextBlock>
                     </Grid>
                 </materialDesign:ColorZone>
-                <ContentControl prism:RegionManager.RegionName="Header" DockPanel.Dock="Top" />
+                <ContentControl prism:RegionManager.RegionName="HeaderRegion" DockPanel.Dock="Top" />
                 <Separator
                     BorderBrush="{StaticResource PrimaryHueDarkBrush}"
                     BorderThickness="1"
                     DockPanel.Dock="Top" />
-                <ToolBarTray prism:RegionManager.RegionName="ToolBar" DockPanel.Dock="Top">
+                <ToolBarTray prism:RegionManager.RegionName="ToolBarReg" DockPanel.Dock="Top">
                     <ToolBarTray.Resources>
 
-                        <Style BasedOn="{StaticResource MaterialDesignToolBar}" TargetType="{x:Type ToolBar}" >
-                            <Setter Property="Background" Value="Black"/>
+                        <Style BasedOn="{StaticResource MaterialDesignToolBar}" TargetType="{x:Type ToolBar}">
+                            <Setter Property="Background" Value="Black" />
                         </Style>
 
                     </ToolBarTray.Resources>
@@ -147,7 +147,7 @@
                         Grid.Column="0"
                         Margin="5"
                         materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-                        prism:RegionManager.RegionName="Content"
+                        prism:RegionManager.RegionName="ContentRegion"
                         ForceCursor="True"
                         SelectedIndex="0">
                         <materialDesign:Transitioner.Resources>
@@ -185,7 +185,7 @@
                         Grid.Column="2"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="ToolsControl" prism:RegionManager.RegionName="Tools" />
+                        <ItemsControl x:Name="ToolsControl" prism:RegionManager.RegionName="ToolsRegion" />
                     </ScrollViewer>
                     <StackPanel
                         Grid.Row="2"

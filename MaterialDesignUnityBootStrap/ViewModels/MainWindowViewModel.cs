@@ -1,11 +1,9 @@
-﻿using CompositeContentNavigatorServiceModule.Services;
-using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.Config;
 using MaterialDesignUnityBootStrap.Views;
 using Microsoft.Extensions.Configuration;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
 
 namespace MaterialDesignUnityBootStrap.ViewModels
 {

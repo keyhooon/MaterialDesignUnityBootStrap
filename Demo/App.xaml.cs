@@ -1,7 +1,9 @@
-﻿using CompositeContentNavigatorServiceModule.Services;
-using CompositeContentNavigatorServiceModule.Services.MapItems;
-using CompositeContentNavigatorServiceModule.Services.MapItems.Data;
+﻿
+using CompositeContentNavigator.Services;
+using CompositeContentNavigator.Services.MapItems;
+using CompositeContentNavigator.Services.MapItems.Data;
 using Demo.Views;
+using MaterialDesignThemes.Wpf;
 using Prism.Ioc;
 using Prism.Regions;
 using System.Collections.ObjectModel;
@@ -24,11 +26,12 @@ namespace Demo
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
             var compositeMapNavigatorService = Container.Resolve<CompositeMapNavigatorService>();
 
-            compositeMapNavigatorService.RegisterItem("Cardio", MapItemBuilder.CreateDefaultBuilder("Cardio").WithChild(new Collection<MapItem> {
-                    compositeMapNavigatorService.RegisterItem("CardioSignal",MapItemBuilder.CreateDefaultBuilder("Signal").WithView(typeof(Content1View))),
-                    compositeMapNavigatorService.RegisterItem("CardioAnalysis",MapItemBuilder.CreateDefaultBuilder("Analysis").WithView(typeof(Content2View))),
+            compositeMapNavigatorService.RegisterItem("Cardio", MapItemBuilder.CreateDefaultBuilder("Cardio").WithImagePackIcon(PackIconKind.Heart).WithChild(new Collection<MapItem> {
+                    compositeMapNavigatorService.RegisterItem("CardioSignal",MapItemBuilder.CreateDefaultBuilder("Signal").WithView(typeof(Content1View)).WithImagePackIcon(PackIconKind.Signal)),
+                    compositeMapNavigatorService.RegisterItem("CardioAnalysis",MapItemBuilder.CreateDefaultBuilder("Analysis").WithView(typeof(Content2View)).WithImagePackIcon(PackIconKind.Analog))
                 }));
         }
     }

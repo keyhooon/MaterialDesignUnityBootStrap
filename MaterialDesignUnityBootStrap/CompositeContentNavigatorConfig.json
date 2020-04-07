@@ -1,0 +1,13 @@
+﻿{
+  "MainWindowConfig": {
+    "Name": "DemoApp"
+  },
+  "ContentNavigator": {
+    "HasRoot": true,
+    "RootDisplay": "Main Root",
+    "ContentRegionName": "ContentRegion",
+    "TolbarRegionName": "ToolbarRegion",
+    "ContentMapRegionName": "ContentMapRegion",
+    "HeaderRegionName": "HeaderRegion"
+  }
+}
