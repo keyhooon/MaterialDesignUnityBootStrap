@@ -38,7 +38,7 @@
                         IsChecked="{Binding IsChecked, ElementName=MenuToggleButton, Mode=TwoWay}"
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ContentControl prism:RegionManager.RegionName="ContentMapRegion" />
+                        <ContentControl prism:RegionManager.RegionName="{Binding ContentMapRegionName}" />
                     </ScrollViewer>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
@@ -112,52 +112,70 @@
                         </TextBlock>
                     </Grid>
                 </materialDesign:ColorZone>
-                <ContentControl prism:RegionManager.RegionName="HeaderRegion" DockPanel.Dock="Top" />
+                <ContentControl prism:RegionManager.RegionName="{Binding HeaderRegionName}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Height="50" DockPanel.Dock="Top" />
                 <Separator
                     BorderBrush="{StaticResource PrimaryHueDarkBrush}"
                     BorderThickness="1"
                     DockPanel.Dock="Top" />
-                <ToolBarTray prism:RegionManager.RegionName="ToolbarRegion" DockPanel.Dock="Top">
+                <ToolBarTray prism:RegionManager.RegionName="{Binding ToolbarRegionName}" DockPanel.Dock="Top">
                     <ToolBarTray.Resources>
+
                         <Style BasedOn="{StaticResource MaterialDesignToolBar}" TargetType="{x:Type ToolBar}">
                             <Setter Property="Background" Value="Black" />
                         </Style>
+
                     </ToolBarTray.Resources>
                 </ToolBarTray>
+                <StackPanel
+                        DockPanel.Dock="Bottom"
+                        Margin="4" FlowDirection="RightToLeft"
+                        Orientation="Horizontal">
+                    <Button
+                            Margin="4"
+                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                            CommandTarget="{Binding ElementName=Transitioner}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Kind="StepForward" />
+                    </Button>
+                    <Button
+                            Margin="4"
+                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                            CommandTarget="{Binding ElementName=Transitioner}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Kind="StepBackward" />
+                    </Button>
+                </StackPanel>
+
+
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <StackPanel
-                        Grid.Row="0"
-                        Grid.ColumnSpan="3"
-                        MinHeight="20"
-                        Orientation="Vertical" />
                     <materialDesign:Transitioner
-                        Grid.Row="1"
-                        Grid.Column="0"
+                        Grid.Column="0" x:Name="Transitioner"
                         Margin="5"
                         materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-                        prism:RegionManager.RegionName="ContentRegion"
+                        prism:RegionManager.RegionName="{Binding ContentRegionName}"
                         ForceCursor="True"
                         SelectedIndex="0">
                         <materialDesign:Transitioner.Resources>
                             <Style BasedOn="{StaticResource {x:Type materialDesign:TransitionerSlide}}" TargetType="{x:Type materialDesign:TransitionerSlide}">
                                 <Setter Property="ForwardWipe">
                                     <Setter.Value>
-                                        <materialDesign:SlideWipe Direction="Right" Duration="0:0:.7" />
+                                        <materialDesign:SlideWipe Direction="Left" Duration="0:0:.7" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="BackwardWipe">
                                     <Setter.Value>
-                                        <materialDesign:SlideWipe Direction="Left" Duration="0:0:.7" />
+                                        <materialDesign:SlideWipe Direction="Right" Duration="0:0:.7" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="OpeningEffect">
@@ -169,7 +187,6 @@
                         </materialDesign:Transitioner.Resources>
                     </materialDesign:Transitioner>
                     <GridSplitter
-                        Grid.Row="1"
                         Grid.Column="1"
                         Margin="0,5"
                         HorizontalAlignment="Center"
@@ -179,38 +196,11 @@
                         ResizeBehavior="BasedOnAlignment"
                         ResizeDirection="Columns" />
                     <ScrollViewer
-                        Grid.Row="1"
                         Grid.Column="2"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
                         <ItemsControl x:Name="ToolsControl" prism:RegionManager.RegionName="ToolsRegion" />
                     </ScrollViewer>
-                    <StackPanel
-                        Grid.Row="2"
-                        Margin="4"
-                        FlowDirection="RightToLeft"
-                        Orientation="Horizontal">
-                        <Button
-                            Margin="4"
-                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
-                            CommandTarget="{Binding ElementName=Transitioner}"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                Kind="StepForward" />
-                        </Button>
-                        <Button
-                            Margin="4"
-                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-                            CommandTarget="{Binding ElementName=Transitioner}"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                Kind="StepBackward" />
-                        </Button>
-                    </StackPanel>
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

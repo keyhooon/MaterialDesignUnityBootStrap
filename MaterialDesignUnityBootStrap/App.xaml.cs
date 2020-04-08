@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Prism.Modularity;
 using Prism.Unity.Ioc;
 using System.Collections.ObjectModel;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignUnityBootStrap
 {
@@ -20,6 +21,9 @@ namespace MaterialDesignUnityBootStrap
     {
         protected override Window CreateShell()
         {
+
+            LoadTheme();
+
             return ServiceLocator.Current.TryResolve<MainWindow>();
         }
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
@@ -34,7 +38,7 @@ namespace MaterialDesignUnityBootStrap
                 .Register<MainWindow>()
                 .RegisterInstance(new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("CompositeContentNavigatorConfig.json", optional: true, true).Build());
+                    .AddJsonFile("AppConfig.json", optional: true, true).Build());
         }
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
@@ -42,6 +46,23 @@ namespace MaterialDesignUnityBootStrap
 
             moduleCatalog.AddModule<CompositeContentNavigator.ContentNavigatorModule>();
 
+        }
+        private void LoadTheme()
+        {
+            var paletteHelper = new PaletteHelper();
+            var theme = (Theme)paletteHelper.GetTheme();
+            theme.SetBaseTheme(Settings.Default.IsDark ? Theme.Dark : Theme.Light);
+            if(Settings.Default.PrimaryColor.HasValue)
+                theme.SetPrimaryColor(Settings.Default.PrimaryColor.Value);
+            if (Settings.Default.SecondaryColor.HasValue)
+                theme.SetSecondaryColor(Settings.Default.SecondaryColor.Value);
+            paletteHelper.SetTheme(theme);
+
+        }
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Settings.Default.Save();
+            base.OnExit(e);
         }
     }
 }

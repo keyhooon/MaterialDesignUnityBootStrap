@@ -1,7 +1,4 @@
 ﻿{
-  "MainWindowConfig": {
-    "Name": "DemoApp"
-  },
   "ContentNavigator": {
     "HasRoot": true,
     "RootDisplay": "Main Root",
