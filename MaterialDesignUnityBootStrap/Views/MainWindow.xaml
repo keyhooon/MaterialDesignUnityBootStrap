@@ -117,13 +117,11 @@
                     BorderBrush="{StaticResource PrimaryHueDarkBrush}"
                     BorderThickness="1"
                     DockPanel.Dock="Top" />
-                <ToolBarTray prism:RegionManager.RegionName="ToolBarReg" DockPanel.Dock="Top">
+                <ToolBarTray prism:RegionManager.RegionName="ToolbarRegion" DockPanel.Dock="Top">
                     <ToolBarTray.Resources>
-
                         <Style BasedOn="{StaticResource MaterialDesignToolBar}" TargetType="{x:Type ToolBar}">
                             <Setter Property="Background" Value="Black" />
                         </Style>
-
                     </ToolBarTray.Resources>
                 </ToolBarTray>
                 <Grid>

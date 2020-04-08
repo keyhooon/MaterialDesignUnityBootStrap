@@ -6,7 +6,7 @@
     "HasRoot": true,
     "RootDisplay": "Main Root",
     "ContentRegionName": "ContentRegion",
-    "TolbarRegionName": "ToolbarRegion",
+    "ToolbarRegionName": "ToolbarRegion",
     "ContentMapRegionName": "ContentMapRegion",
     "HeaderRegionName": "HeaderRegion"
   }
