@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MaterialDesignUnityBootStrap" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IsDark" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PrimaryColor" Type="System.Windows.Media.Color?" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SecondaryColor" Type="System.Windows.Media.Color?" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

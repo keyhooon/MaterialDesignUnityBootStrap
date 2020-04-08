@@ -30,7 +30,7 @@ namespace Demo
             var compositeMapNavigatorService = Container.Resolve<CompositeMapNavigatorService>();
 
             compositeMapNavigatorService.RegisterItem("Cardio", MapItemBuilder.CreateDefaultBuilder("Cardio").WithImagePackIcon(PackIconKind.Heart).WithChild(new Collection<MapItem> {
-                    compositeMapNavigatorService.RegisterItem("CardioSignal",MapItemBuilder.CreateDefaultBuilder("Signal").WithView(typeof(Content1View)).WithImagePackIcon(PackIconKind.Signal)),
+                    compositeMapNavigatorService.RegisterItem("CardioSignal",MapItemBuilder.CreateDefaultBuilder("Signal").WithToolbars(new[]{ typeof(ToolBarView)}).WithView(typeof(Content1View)).WithImagePackIcon(PackIconKind.Signal)),
                     compositeMapNavigatorService.RegisterItem("CardioAnalysis",MapItemBuilder.CreateDefaultBuilder("Analysis").WithView(typeof(Content2View)).WithImagePackIcon(PackIconKind.Analog))
                 }));
         }
