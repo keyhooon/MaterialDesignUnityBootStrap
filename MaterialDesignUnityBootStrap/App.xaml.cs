@@ -11,6 +11,7 @@ using Prism.Modularity;
 using Prism.Unity.Ioc;
 using System.Collections.ObjectModel;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignUnityBootStrap.ViewModels;
 
 namespace MaterialDesignUnityBootStrap
 {
@@ -33,12 +34,15 @@ namespace MaterialDesignUnityBootStrap
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-          
+
             containerRegistry
                 .Register<MainWindow>()
                 .RegisterInstance(new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("AppConfig.json", optional: true, true).Build());
+
+            containerRegistry.RegisterDialog<PaletteSelector, PaletteSelectorViewModel>(typeof(PaletteSelector).FullName);
+            containerRegistry.RegisterDialogWindow<DialogWindow>();
         }
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {

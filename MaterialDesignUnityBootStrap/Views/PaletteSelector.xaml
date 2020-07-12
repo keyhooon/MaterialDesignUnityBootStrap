@@ -144,6 +144,12 @@
                 HorizontalAlignment="Center"
                 Orientation="Horizontal">
                 <Button
+                    Command="{Binding OkCommand}"
+                    IsDefault="True"
+                    Style="{DynamicResource MaterialDesignFlatButton}">
+                    Close
+                </Button>
+                <!--<Button
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
                     IsDefault="True"
                     Style="{DynamicResource MaterialDesignFlatButton}">
@@ -151,7 +157,7 @@
                         <system1:Boolean>True</system1:Boolean>
                     </Button.CommandParameter>
                     Close
-                </Button>
+                </Button>-->
             </StackPanel>
         </Grid>
     </Grid>

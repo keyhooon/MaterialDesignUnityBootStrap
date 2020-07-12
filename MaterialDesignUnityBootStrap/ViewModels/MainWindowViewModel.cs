@@ -4,6 +4,7 @@ using MaterialDesignUnityBootStrap.Views;
 using Microsoft.Extensions.Configuration;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 
 namespace MaterialDesignUnityBootStrap.ViewModels
 {
@@ -11,8 +12,9 @@ namespace MaterialDesignUnityBootStrap.ViewModels
     {
         private readonly MainWindowConfig _mainWindowConfig;
         private readonly CompositeContentNavigator.ModuleConfig _compositeContentNavigatorConfig;
+        private readonly IDialogService dialogService;
 
-        public MainWindowViewModel(IConfigurationRoot configurationRoot)
+        public MainWindowViewModel(IConfigurationRoot configurationRoot,IDialogService dialogService)
         {
             var section = configurationRoot.GetSection(MainWindowConfig.SectionName);
             if (section.Exists())
@@ -25,6 +27,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
                 _compositeContentNavigatorConfig = ConfigurationBinder.Get<CompositeContentNavigator.ModuleConfig>(section);
             else
                 _compositeContentNavigatorConfig = new CompositeContentNavigator.ModuleConfig();
+            this.dialogService = dialogService;
         }
 
 
@@ -65,13 +68,13 @@ namespace MaterialDesignUnityBootStrap.ViewModels
             get
             {
                 return _paletteSelectorShowCommand ??= new DelegateCommand(
-                    async () =>
+                    () =>
                     {
                         var view = new PaletteSelector();
 
-
+                        //var result = await DialogHost.Show(view);
                         //show the dialog
-                        var result = await DialogHost.Show(view);
+                        dialogService.ShowDialog(typeof(PaletteSelector).FullName,new DialogParameters("title=Themes"),(o)=> { });
                     });
             }
         }

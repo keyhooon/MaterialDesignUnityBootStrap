@@ -91,13 +91,7 @@
                                 Style="{StaticResource MaterialDesignRaisedLightButton}">
                                 <materialDesign:PackIcon Kind="FormatPaint" />
                             </Button>
-                            <materialDesign:PopupBox
-                                DockPanel.Dock="Right"
-                                PlacementMode="BottomAndAlignRightEdges"
-                                StaysOpen="False"
-                                Style="{StaticResource MaterialDesignPopupBox}">
-                                <ListBox />
-                            </materialDesign:PopupBox>
+                            <UIElement />
                         </DockPanel>
                         <TextBlock
                             HorizontalAlignment="Center"
@@ -112,7 +106,12 @@
                         </TextBlock>
                     </Grid>
                 </materialDesign:ColorZone>
-                <ContentControl prism:RegionManager.RegionName="{Binding HeaderRegionName}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Height="50" DockPanel.Dock="Top" />
+                <ContentControl
+                    Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    prism:RegionManager.RegionName="{Binding HeaderRegionName}"
+                    DockPanel.Dock="Top" />
                 <Separator
                     BorderBrush="{StaticResource PrimaryHueDarkBrush}"
                     BorderThickness="1"
@@ -127,32 +126,31 @@
                     </ToolBarTray.Resources>
                 </ToolBarTray>
                 <StackPanel
-                        DockPanel.Dock="Bottom"
-                        Margin="4" FlowDirection="RightToLeft"
-                        Orientation="Horizontal">
+                    Margin="4"
+                    DockPanel.Dock="Bottom"
+                    FlowDirection="RightToLeft"
+                    Orientation="Horizontal">
                     <Button
-                            Margin="4"
-                            Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-                            CommandTarget="{Binding ElementName=Transitioner}"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        Margin="4"
+                        Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                        CommandTarget="{Binding ElementName=Transitioner}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
                         <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                Kind="StepForward" />
+                            Width="24"
+                            Height="24"
+                            Kind="StepForward" />
                     </Button>
                     <Button
-                            Margin="4"
-                            Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
-                            CommandTarget="{Binding ElementName=Transitioner}"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        Margin="4"
+                        Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                        CommandTarget="{Binding ElementName=Transitioner}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
                         <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                Kind="StepBackward" />
+                            Width="24"
+                            Height="24"
+                            Kind="StepBackward" />
                     </Button>
                 </StackPanel>
-
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -160,7 +158,8 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <materialDesign:Transitioner
-                        Grid.Column="0" x:Name="Transitioner"
+                        x:Name="Transitioner"
+                        Grid.Column="0"
                         Margin="5"
                         materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                         prism:RegionManager.RegionName="{Binding ContentRegionName}"

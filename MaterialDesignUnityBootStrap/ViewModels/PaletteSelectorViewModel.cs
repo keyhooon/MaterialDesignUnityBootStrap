@@ -12,7 +12,7 @@ using Prism.Services.Dialogs;
 
 namespace MaterialDesignUnityBootStrap.ViewModels
 {
-    public class PaletteSelectorViewModel : BindableBase
+    public class PaletteSelectorViewModel : BindableBase, IDialogAware
     {
 
 
@@ -22,6 +22,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
         private DelegateCommand<bool> _toggleBaseCommand;
         private DelegateCommand<Swatch> _applyPrimaryCommand;
         private DelegateCommand<Swatch> _applyAccentCommand;
+        private DelegateCommand _okCommand;
 
         public PaletteSelectorViewModel()
         {
@@ -47,5 +48,27 @@ namespace MaterialDesignUnityBootStrap.ViewModels
 
         public DelegateCommand<Swatch> ApplyAccentCommand => _applyAccentCommand ??= new DelegateCommand<Swatch>(
             swatch => { theme.SetSecondaryColor(swatch.AccentExemplarHue.Color); Settings.Default.SecondaryColor = swatch.AccentExemplarHue.Color; Settings.Default.Save(); paletteHelper.SetTheme(theme); });
+
+        public DelegateCommand OkCommand => _okCommand ??= new DelegateCommand(() => { 
+            RequestClose(new DialogResult(ButtonResult.OK)); 
+        });
+
+
+
+        public string Title => throw new NotImplementedException();
+
+        public event Action<IDialogResult> RequestClose;
+
+        public bool CanCloseDialog() => true;
+
+        public void OnDialogClosed()
+        {
+
+        }
+
+        public void OnDialogOpened(IDialogParameters parameters)
+        {
+
+        }
     }
 }
