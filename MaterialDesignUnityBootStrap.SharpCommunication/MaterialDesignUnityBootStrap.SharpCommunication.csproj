@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>MaterialDesignUnityBootStrap.SharpCommunication</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CompositeContentNavigator" Version="1.0.2" />
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
+    <PackageReference Include="SharpCommunication.Base" Version="1.0.7" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SharpCommunication\SharpCommunication.Base\SharpCommunication.Base.csproj" />
+    <ProjectReference Include="..\MaterialDesignUnityBootStrap\MaterialDesignUnityBootStrap.csproj" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@ using Prism.Unity.Ioc;
 using System.Collections.ObjectModel;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.ViewModels;
+using Unity;
 
 namespace MaterialDesignUnityBootStrap
 {
