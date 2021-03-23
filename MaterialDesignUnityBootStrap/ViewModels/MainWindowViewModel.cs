@@ -1,4 +1,7 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using System;
+using System.Windows;
+using System.Windows.Threading;
+using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.Config;
 using MaterialDesignUnityBootStrap.Views;
 using Microsoft.Extensions.Configuration;
@@ -17,45 +20,36 @@ namespace MaterialDesignUnityBootStrap.ViewModels
         public MainWindowViewModel(IConfigurationRoot configurationRoot,IDialogService dialogService)
         {
             var section = configurationRoot.GetSection(MainWindowConfig.SectionName);
-            if (section.Exists())
-                _mainWindowConfig = ConfigurationBinder.Get<MainWindowConfig>(section);
-            else
-                _mainWindowConfig = new MainWindowConfig();
+            _mainWindowConfig = section.Exists() ? section.Get<MainWindowConfig>() : new MainWindowConfig();
 
             section = configurationRoot.GetSection(CompositeContentNavigator.ModuleConfig.SectionName);
-            if (section.Exists())
-                _compositeContentNavigatorConfig = ConfigurationBinder.Get<CompositeContentNavigator.ModuleConfig>(section);
-            else
-                _compositeContentNavigatorConfig = new CompositeContentNavigator.ModuleConfig();
+            _compositeContentNavigatorConfig = section.Exists() ? section.Get<CompositeContentNavigator.ModuleConfig>() : new CompositeContentNavigator.ModuleConfig();
+            
             this.dialogService = dialogService;
+
+            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background,Dispatcher.CurrentDispatcher);
+            timer.Tick += (sender, args) => RaisePropertyChanged(nameof(DateTimeNow));
+            timer.Start();
         }
 
 
-  
-        public string Header
-        {
-            get { return _mainWindowConfig.Name; }
-        }
+        public DateTime DateTimeNow => DateTime.Now;
 
-        public string ToolbarRegionName
-        {
-            get { return _compositeContentNavigatorConfig.ToolbarRegionName; }
-        }
+        public string Header => _mainWindowConfig.Name;
 
-        public string ContentRegionName
-        {
-            get { return _compositeContentNavigatorConfig.ContentRegionName; }
-        }
+        public Visibility PaletteSelectorVisibility =>
+            _mainWindowConfig.PaletteSelectorVisibility ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility NavigationButtonVisibility =>
+            _mainWindowConfig.NavigationButtonVisibility ? Visibility.Visible : Visibility.Collapsed;
 
-        public string ContentMapRegionName
-        {
-            get { return _compositeContentNavigatorConfig.ContentMapRegionName; }
-        }
+        public string ToolbarRegionName => _compositeContentNavigatorConfig.ToolbarRegionName;
 
-        public string HeaderRegionName
-        {
-            get { return _compositeContentNavigatorConfig.HeaderRegionName; }
-        }
+        public string ContentRegionName => _compositeContentNavigatorConfig.ContentRegionName;
+
+        public string PopupToolBarRegionName => _mainWindowConfig.PopupToolBarRegionName;
+        public string ContentMapRegionName => _compositeContentNavigatorConfig.ContentMapRegionName;
+
+        public string HeaderRegionName => _compositeContentNavigatorConfig.HeaderRegionName;
 
         private DelegateCommand _paletteSelectorShowCommand;
 

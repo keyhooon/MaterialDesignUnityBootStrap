@@ -9,9 +9,17 @@ namespace MaterialDesignUnityBootStrap.Config
         public MainWindowConfig()
         {
             Name = "Application";
+            PaletteSelectorVisibility = true;
+            NavigationButtonVisibility = true;
         }
         public static string SectionName = "MainWindow";
         public string Name { get; set; }
+
+
+        public bool PaletteSelectorVisibility { get; set; }
+        public bool NavigationButtonVisibility { get; set; }
+
+        public string PopupToolBarRegionName { get; set; }
 
     }
 }

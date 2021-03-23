@@ -18,8 +18,8 @@ namespace Demo
     {
         protected override Window CreateShell()
         {
-            Container.Resolve<IRegionManager>().RegisterViewWithRegion("Tools", typeof(ToolView));
-            Container.Resolve<IRegionManager>().RegisterViewWithRegion("ToolBar", typeof(ToolBarView));
+            Container.Resolve<IRegionManager>().RegisterViewWithRegion("PopupToolBarRegion", typeof(ToolView));
+            //Container.Resolve<IRegionManager>().RegisterViewWithRegion("ToolbarRegion", typeof(ToolBarView));
 
             return base.CreateShell();
         }

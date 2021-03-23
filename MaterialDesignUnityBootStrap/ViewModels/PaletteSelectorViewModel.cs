@@ -14,10 +14,8 @@ namespace MaterialDesignUnityBootStrap.ViewModels
 {
     public class PaletteSelectorViewModel : BindableBase, IDialogAware
     {
-
-
-        PaletteHelper paletteHelper;
-        Theme theme;
+        readonly PaletteHelper paletteHelper;
+        readonly Theme theme;
 
         private DelegateCommand<bool> _toggleBaseCommand;
         private DelegateCommand<Swatch> _applyPrimaryCommand;
@@ -33,7 +31,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
 
         public bool IsDark
         {
-            get { return theme.Background == Theme.Dark.MaterialDesignBackground; }
+            get => theme.Background == Theme.Dark.MaterialDesignBackground;
             set { theme.SetBaseTheme(value ? Theme.Dark : Theme.Light); Settings.Default.IsDark = value; Settings.Default.Save(); paletteHelper.SetTheme(theme); RaisePropertyChanged(); }
         }
 
@@ -55,7 +53,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
 
 
 
-        public string Title => throw new NotImplementedException();
+        public string Title { get; set; }
 
         public event Action<IDialogResult> RequestClose;
 
@@ -68,7 +66,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-
+            Title = parameters.GetValue<string>("title");
         }
     }
 }

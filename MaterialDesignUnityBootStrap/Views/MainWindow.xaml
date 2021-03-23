@@ -9,9 +9,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:xamlBehaviors="clr-namespace:WpfInfrastructure.Behaviors;assembly=WpfInfrastructure"
     x:Name="Window"
-    Title="Power Box"
+    Title="{Binding Header}"
     Width="400"
     Height="150"
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -83,7 +84,20 @@
                                                               Size=20}"
                             DockPanel.Dock="Right"
                             Foreground="{DynamicResource PrimaryHueDarkBrush}"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}" />
+                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Visibility="{Binding PaletteSelectorVisibility}" />
+                        <Button
+                            Width="32"
+                            Height="32"
+                            Margin="5"
+                            Background="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                            Command="{Binding PaletteSelectorShowCommand}"
+                            Content="{materialDesign:PackIcon Kind=ShieldAccount,
+                                                              Size=20}"
+                            DockPanel.Dock="Right"
+                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Visibility="{Binding PaletteSelectorVisibility}" />
                         <ContentControl
                             Margin="5"
                             HorizontalAlignment="center"
@@ -101,11 +115,64 @@
 
                     </ToolBarTray.Resources>
                 </ToolBarTray>
+
+                <materialDesign:ColorZone
+                    VerticalAlignment="Bottom"
+                    DockPanel.Dock="Bottom"
+                    Mode="PrimaryDark">
+                    <Grid Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="5"
+                            prism:RegionManager.RegionName="{Binding PopupToolBarRegionName}"
+                            Orientation="Horizontal">
+                            <!--  <Button  -->
+                            <!--  Margin="5"  -->
+                            <!--  Padding="5"  -->
+                            <!--  Content="{materialDesign:PackIcon Kind=Message,  -->
+                            <!--  Size=24}" />  -->
+
+                        </StackPanel>
+                        <Separator
+                            Grid.Column="6"
+                            Height="Auto"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Stretch"
+                            Style="{StaticResource MaterialDesignLightSeparator}" />
+                        <ContentControl Grid.Column="7" DataContext="{Binding DateTimeNow}">
+                            <StackPanel Margin="10,0">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    FontWeight="Light"
+                                    Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                    Text="{Binding ., StringFormat='{}{0:h:mm tt}'}" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    FontWeight="Light"
+                                    Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                    Text="{Binding Date, StringFormat='{}{0:M/dd/yyyy}'}" />
+
+                            </StackPanel>
+                        </ContentControl>
+                    </Grid>
+
+                </materialDesign:ColorZone>
                 <StackPanel
                     Margin="4"
+                    VerticalAlignment="Bottom"
                     DockPanel.Dock="Bottom"
                     FlowDirection="RightToLeft"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    Visibility="{Binding NavigationButtonVisibility}">
                     <Button
                         Margin="4"
                         Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
@@ -127,7 +194,6 @@
                             Kind="StepBackward" />
                     </Button>
                 </StackPanel>
-
                 <materialDesign:Transitioner
                     x:Name="Transitioner"
                     Grid.Column="0"

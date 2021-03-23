@@ -1,9 +1,17 @@
-﻿<UserControl x:Class="Demo.Views.ToolView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
-             prism:ViewModelLocator.AutoWireViewModel="True">
+﻿<UserControl
+    x:Class="Demo.Views.ToolView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:compositeContentNavigator="clr-namespace:CompositeContentNavigator;assembly=CompositeContentNavigator"
+    xmlns:prism="http://prismlibrary.com/"
+    MinWidth="300"
+    MinHeight="300"
+    compositeContentNavigator:ViewManager.HeaderPackIcon="Toolbox"
+    prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-            
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Hello World !!!" />
     </Grid>
 </UserControl>

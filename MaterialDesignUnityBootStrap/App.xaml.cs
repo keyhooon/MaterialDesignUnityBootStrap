@@ -1,18 +1,24 @@
-﻿using Prism.Ioc;
+﻿using System;
+using Prism.Ioc;
 using MaterialDesignUnityBootStrap.Views;
 using System.Windows;
-using WpfInfrastructure.RegionAdapter;
 using System.Windows.Controls;
-using CommonServiceLocator;
+
 using Prism.Regions;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Prism.Modularity;
-using Prism.Unity.Ioc;
+using CompositeContentNavigator.Infrastructure;
 using System.Collections.ObjectModel;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.ViewModels;
 using Unity;
+using CommonServiceLocator;
+using MaterialDesignUnityBootStrap.RegionAdapter;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Prism.Unity;
+using Prism.Microsoft.DependencyInjection;
 
 namespace MaterialDesignUnityBootStrap
 {
@@ -25,22 +31,33 @@ namespace MaterialDesignUnityBootStrap
         {
 
             LoadTheme();
-
-            return ServiceLocator.Current.TryResolve<MainWindow>();
+            return ((UnityContainerExtension) Container).Resolve<MainWindow>();
         }
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
-            regionAdapterMappings?.RegisterMapping(typeof(ToolBarTray), Container.Resolve<ToolbarRegionAdapter>());
+            regionAdapterMappings?.RegisterMapping(typeof(ToolBarTray), Container.Resolve<ToolBarTrayRegionAdapter>());
+            regionAdapterMappings?.RegisterMapping(typeof(StackPanel), Container.Resolve<StackPopupRegionAdapter>());
+
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            var configurationRoot = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("AppConfig.json", optional: true, true).Build();
             containerRegistry
                 .Register<MainWindow>()
-                .RegisterInstance(new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("AppConfig.json", optional: true, true).Build());
+                .RegisterInstance(configurationRoot);
+
+            PrismContainerExtension.Current.RegisterServices(s =>
+            {
+                s.AddLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                    logging.AddConfiguration(configurationRoot);
+                });
+            });
 
             containerRegistry.RegisterDialog<PaletteSelector, PaletteSelectorViewModel>(typeof(PaletteSelector).FullName);
             containerRegistry.RegisterDialogWindow<DialogWindow>();
