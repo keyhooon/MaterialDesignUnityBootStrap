@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using Prism.Ioc;
 using MaterialDesignUnityBootStrap.Views;
 using System.Windows;
@@ -14,10 +14,12 @@ using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.ViewModels;
 using Unity;
 using CommonServiceLocator;
-using MaterialDesignUnityBootStrap.RegionAdapter;
+    using CompositeContentNavigator;
+    using MaterialDesignUnityBootStrap.Config;
+    using MaterialDesignUnityBootStrap.RegionAdapter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Prism.Unity;
+    using Prism.Unity;
 using Prism.Microsoft.DependencyInjection;
 
 namespace MaterialDesignUnityBootStrap
@@ -31,7 +33,10 @@ namespace MaterialDesignUnityBootStrap
         {
 
             LoadTheme();
-            return ((UnityContainerExtension) Container).Resolve<MainWindow>();
+            var mainWindow = ((UnityContainerExtension) Container).Resolve<MainWindow>();
+
+            Container.Resolve<IRegionManager>().RegisterViewWithRegion("PopupToolBarRegion", typeof(LogView));
+            return mainWindow;
         }
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
@@ -45,19 +50,24 @@ namespace MaterialDesignUnityBootStrap
             var configurationRoot = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("AppConfig.json", optional: true, true).Build();
+
             containerRegistry
                 .Register<MainWindow>()
-                .RegisterInstance(configurationRoot);
-
-            PrismContainerExtension.Current.RegisterServices(s =>
-            {
-                s.AddLogging(logging =>
+                .RegisterInstance(configurationRoot)
+                .RegisterServices(s =>
                 {
-                    logging.ClearProviders();
-                    logging.AddConsole();
-                    logging.AddConfiguration(configurationRoot);
+                    s.Configure<MainWindowOptions>(configurationRoot.GetSection(nameof(MainWindowOptions)));
+                    s.Configure<PubSubEventLoggerOption>(configurationRoot.GetSection(nameof(PubSubEventLoggerOption)));
+                    s.Configure<ContentNavigatorOption>(configurationRoot.GetSection(nameof(ContentNavigatorOption)));
+                   
+                    s.AddLogging(logging =>
+                    {
+                        logging.ClearProviders();
+                        logging.AddConsole();
+                        logging.AddProvider(Container.Resolve<PubSubEventLoggerProvider>());
+                        logging.AddConfiguration(configurationRoot);
+                    });
                 });
-            });
 
             containerRegistry.RegisterDialog<PaletteSelector, PaletteSelectorViewModel>(typeof(PaletteSelector).FullName);
             containerRegistry.RegisterDialogWindow<DialogWindow>();
@@ -86,5 +96,6 @@ namespace MaterialDesignUnityBootStrap
             Settings.Default.Save();
             base.OnExit(e);
         }
+        
     }
 }

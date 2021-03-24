@@ -12,6 +12,11 @@
     <ProjectReference Include="..\MaterialDesignUnityBootStrap\MaterialDesignUnityBootStrap.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CompositeContentNavigator">
+      <HintPath>..\..\PrismHierarchicalNavigator\CompositeContentNavigatorServiceModule\bin\Debug\net5.0-windows\CompositeContentNavigator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="AppConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

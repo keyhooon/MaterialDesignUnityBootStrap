@@ -78,25 +78,20 @@
                             Width="32"
                             Height="32"
                             Margin="5"
-                            Background="{DynamicResource PrimaryHueDarkForegroundBrush}"
                             Command="{Binding PaletteSelectorShowCommand}"
                             Content="{materialDesign:PackIcon Kind=FormatPaint,
                                                               Size=20}"
                             DockPanel.Dock="Right"
-                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             Visibility="{Binding PaletteSelectorVisibility}" />
                         <Button
                             Width="32"
                             Height="32"
                             Margin="5"
-                            Background="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                            Command="{Binding PaletteSelectorShowCommand}"
                             Content="{materialDesign:PackIcon Kind=ShieldAccount,
                                                               Size=20}"
                             DockPanel.Dock="Right"
-                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             Visibility="{Binding PaletteSelectorVisibility}" />
                         <ContentControl
                             Margin="5"

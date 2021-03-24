@@ -43,7 +43,7 @@ namespace MaterialDesignUnityBootStrap.RegionAdapter
                             {
                                 var content = new Card()
                                 {
-                                    UniformCornerRadius = 10,
+                                    UniformCornerRadius = 5,
                                     Margin = new Thickness(10),
                                     Content = new ColorZone()
                                     {

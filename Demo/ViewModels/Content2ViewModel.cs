@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace Demo.ViewModels
 {
-    public class Content2ViewViewModel : BindableBase
+    public class Content2ViewModel : BindableBase
     {
-        public Content2ViewViewModel()
+        public Content2ViewModel()
         {
 
         }

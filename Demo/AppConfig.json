@@ -1,9 +1,10 @@
 ﻿{
-  "MainWindow": {
+  "MainWindowOptions": {
     "Name": "DemoApp",
     "PaletteSelectorVisibility": true,
     "NavigationButtonVisibility": true,
-    "PopupToolBarRegionName": "PopupToolBarRegion"
+    "PopupToolBarRegionName": "PopupToolBarRegion",
+    "MainLoggerCategoryName": "MainLogger"
   },
   "ContentNavigator": {
     "HasRoot": true,

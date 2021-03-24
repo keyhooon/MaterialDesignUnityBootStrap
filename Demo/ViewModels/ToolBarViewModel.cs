@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace Demo.ViewModels
 {
-    public class Content1ViewViewModel : BindableBase
+    public class ToolBarViewModel : BindableBase
     {
-        public Content1ViewViewModel()
+        public ToolBarViewModel()
         {
 
         }

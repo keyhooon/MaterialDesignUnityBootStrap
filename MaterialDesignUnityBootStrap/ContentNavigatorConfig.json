@@ -5,6 +5,6 @@
     "ContentRegionName": "ContentRegion",
     "ToolbarRegionName": "ToolbarRegion",
     "ContentMapRegionName": "ContentMapRegion",
-    "HeaderRegionName": "HeaderRegion"
+    "HeaderRegionName": "HeaderRegion",
   }
 }

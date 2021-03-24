@@ -4,21 +4,21 @@ using System.Text;
 
 namespace MaterialDesignUnityBootStrap.Config
 {
-    public class MainWindowConfig
+    public class MainWindowOptions
     {
-        public MainWindowConfig()
+        public MainWindowOptions()
         {
             Name = "Application";
+            MainLoggerCategoryName = "MainLogger";
             PaletteSelectorVisibility = true;
             NavigationButtonVisibility = true;
         }
         public static string SectionName = "MainWindow";
         public string Name { get; set; }
-
+        public string MainLoggerCategoryName { get; set; }
 
         public bool PaletteSelectorVisibility { get; set; }
         public bool NavigationButtonVisibility { get; set; }
-
         public string PopupToolBarRegionName { get; set; }
 
     }
