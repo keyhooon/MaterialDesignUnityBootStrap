@@ -42,7 +42,7 @@ namespace Demo
                     compositeMapNavigatorService.RegisterItem("CardioAnalysis",MapItemBuilder.
                         CreateDefaultBuilder("Analysis").
                         WithImagePackIcon(PackIconKind.Analog).
-                        WithExtraView(new Dictionary<string, IEnumerable<Type>> {{"PopupToolBarRegion", new[] {typeof(ToolView)}}}).
+                        WithExtraView(new Dictionary<string, IEnumerable<Type>> {{"PopupToolBarRegion", new[] {typeof(ToolView)}}, { "ToolsRegion", new[] {typeof(Tool2View)}}}).
                         WithView(typeof(Content2View)))
                 }));
         }

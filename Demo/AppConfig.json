@@ -4,6 +4,7 @@
     "PaletteSelectorVisibility": true,
     "NavigationButtonVisibility": true,
     "PopupToolBarRegionName": "PopupToolBarRegion",
+    "ToolsRegionName": "ToolsRegion",
     "MainLoggerCategoryName": "MainLogger"
   },
   "ContentNavigator": {

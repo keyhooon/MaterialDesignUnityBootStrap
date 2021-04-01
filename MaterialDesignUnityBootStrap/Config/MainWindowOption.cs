@@ -20,6 +20,7 @@ namespace MaterialDesignUnityBootStrap.Config
         public bool PaletteSelectorVisibility { get; set; }
         public bool NavigationButtonVisibility { get; set; }
         public string PopupToolBarRegionName { get; set; }
+        public string ToolsRegionName { get; set; }
 
     }
 }

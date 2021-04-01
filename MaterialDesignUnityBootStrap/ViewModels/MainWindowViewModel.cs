@@ -41,6 +41,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
             _mainWindowOptions.Value.NavigationButtonVisibility ? Visibility.Visible : Visibility.Collapsed;
 
         public string ToolbarRegionName => _compositeContentNavigatorOptions.Value.ToolbarRegionName;
+        public string ToolsRegionName => _mainWindowOptions.Value.ToolsRegionName;
 
         public string ContentRegionName => _compositeContentNavigatorOptions.Value.ContentRegionName;
 
