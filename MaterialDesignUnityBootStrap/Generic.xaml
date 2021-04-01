@@ -1,0 +1,70 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MaterialDesignUnityBootStrap.LoadingIndicator"
+    xmlns:styles="clr-namespace:MaterialDesignUnityBootStrap.LoadingIndicator.Styles">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingArcs.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingArcs.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingArcsRing.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingDoubleBounce.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingFlipPlane.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingPulse.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingRing.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingThreeDots.xaml" />
+        <ResourceDictionary Source="LoadingIndicator/Styles/LoadingWave.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.bluegrey.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.green.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListView.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SmartHint.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Thumb.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style
+        x:Key="LoadingIndicatorArcsStyle"
+        BasedOn="{StaticResource LoadingIndicatorArcsStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorArcsRingStyle"
+        BasedOn="{StaticResource LoadingIndicatorArcsRingStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorDoubleBounceStyle"
+        BasedOn="{StaticResource LoadingIndicatorDoubleBounceStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorFlipPlaneStyle"
+        BasedOn="{StaticResource LoadingIndicatorFlipPlaneStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorPulseStyle"
+        BasedOn="{StaticResource LoadingIndicatorPulseStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorRingStyle"
+        BasedOn="{StaticResource LoadingIndicatorRingStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorThreeDotsStyle"
+        BasedOn="{StaticResource LoadingIndicatorThreeDotsStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+    <Style
+        x:Key="LoadingIndicatorWaveStyle"
+        BasedOn="{StaticResource LoadingIndicatorWaveStyleKey}"
+        TargetType="{x:Type controls:LoadingIndicator}" />
+
+    <Style BasedOn="{styles:MultiStyle LoadingIndicatorArcsStyle LoadingIndicatorArcsRingStyle LoadingIndicatorDoubleBounceStyle LoadingIndicatorFlipPlaneStyle LoadingIndicatorPulseStyle LoadingIndicatorRingStyle LoadingIndicatorThreeDotsStyle LoadingIndicatorWaveStyle}" TargetType="{x:Type controls:LoadingIndicator}" />
+</ResourceDictionary>

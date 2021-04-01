@@ -92,9 +92,12 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="LoadingIndicator\Themes\Generic.xaml">
+    <Page Update="Generic.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LoadingIndicator\Themes\" />
   </ItemGroup>
 </Project>
