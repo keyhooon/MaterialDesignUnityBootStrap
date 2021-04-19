@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter"
+    xmlns:compositeContentNavigator="clr-namespace:CompositeContentNavigator;assembly=CompositeContentNavigator"
     xmlns:converter="clr-namespace:MaterialDesignUnityBootStrap.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -131,14 +132,20 @@
                             prism:RegionManager.RegionName="{Binding HeaderRegionName}" />
                     </DockPanel>
                 </materialDesign:ColorZone>
-                <ToolBarTray prism:RegionManager.RegionName="{Binding ToolbarRegionName}" DockPanel.Dock="Top">
+                <ToolBarTray
+                    MinHeight="75"
+                    prism:RegionManager.RegionName="{Binding ToolbarRegionName}"
+                    Background="{DynamicResource PrimaryHueDarkBrush}"
+                    DockPanel.Dock="Top">
                     <ToolBarTray.Resources>
 
                         <Style BasedOn="{StaticResource MaterialDesignToolBar}" TargetType="{x:Type ToolBar}">
-                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
                         </Style>
 
                     </ToolBarTray.Resources>
+
+
                 </ToolBarTray>
                 <materialDesign:ColorZone
                     VerticalAlignment="Bottom"
@@ -155,17 +162,41 @@
                             <ColumnDefinition Width="10" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <StackPanel
-                            Grid.Column="5"
-                            prism:RegionManager.RegionName="{Binding PopupToolBarRegionName}"
-                            Orientation="Horizontal">
-                            <!--  <Button  -->
-                            <!--  Margin="5"  -->
-                            <!--  Padding="5"  -->
-                            <!--  Content="{materialDesign:PackIcon Kind=Message,  -->
-                            <!--  Size=24}" />  -->
+                        <ListBox Grid.Column="5" prism:RegionManager.RegionName="{Binding PopupToolBarRegionName}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <ItemContainerTemplate>
+                                    <ContentControl>
+                                        <materialDesign:PopupBox
+                                            PlacementMode="TopAndAlignCentres"
+                                            PopupMode="Click"
+                                            StaysOpen="True"
+                                            Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                            ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                                            <materialDesign:PopupBox.ToggleContent>
+                                                <materialDesign:PackIcon
+                                                    Width="24"
+                                                    Height="24"
+                                                    Kind="{Binding (compositeContentNavigator:ViewManager.HeaderPackIcon)}" />
+                                            </materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PopupBox.PopupContent>
+                                                <materialDesign:Card
+                                                    Margin="35"
+                                                    Padding="5"
+                                                    materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                                                    <ContentPresenter Content="{Binding}" />
+                                                </materialDesign:Card>
 
-                        </StackPanel>
+                                            </materialDesign:PopupBox.PopupContent>
+                                        </materialDesign:PopupBox>
+                                    </ContentControl>
+                                </ItemContainerTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
 
                         <Separator
                             Grid.Column="6"
@@ -194,18 +225,19 @@
 
 
                 <Grid>
-
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" IsEnabled="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty}" />
-                        <ColumnDefinition MaxWidth="400" IsEnabled="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty}">
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="auto" IsEnabled="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty}" />
+                        <ColumnDefinition>
                             <ColumnDefinition.Style>
                                 <Style TargetType="ColumnDefinition">
                                     <Setter Property="MinWidth" Value="200" />
+                                    <Setter Property="MaxWidth" Value="400" />
                                     <Setter Property="Width" Value="Auto" />
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty}" Value="True">
                                             <Setter Property="Width" Value="0" />
+                                            <Setter Property="MaxWidth" Value="0" />
                                             <Setter Property="MinWidth" Value="0" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -216,7 +248,7 @@
                     <materialDesign:Transitioner
                         x:Name="Transitioner"
                         Grid.Column="0"
-                        Margin="5"
+                        Margin="15,15,15,15"
                         materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                         prism:RegionManager.RegionName="{Binding ContentRegionName}"
                         ForceCursor="True"
@@ -240,16 +272,25 @@
                                 </Setter>
                             </Style>
                         </materialDesign:Transitioner.Resources>
+                        <materialDesign:Transitioner.ItemTemplate>
+                            <ItemContainerTemplate>
+                                <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                    <materialDesign:ColorZone VerticalAlignment="Stretch" Mode="PrimaryDark">
+                                        <ContentPresenter Content="{Binding}" />
+                                    </materialDesign:ColorZone>
+                                </materialDesign:Card>
+                            </ItemContainerTemplate>
+                        </materialDesign:Transitioner.ItemTemplate>
                     </materialDesign:Transitioner>
                     <GridSplitter
                         Grid.Column="1"
                         Width="5"
-                        Margin="0,5"
+                        Margin="0,15"
                         ResizeBehavior="PreviousAndNext"
                         Visibility="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty, Converter={StaticResource InverseBoolToVisConverter}}" />
                     <materialDesign:Card
                         Grid.Column="2"
-                        Margin="0,5,5,5"
+                        Margin="15"
                         Visibility="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty, Converter={StaticResource InverseBoolToVisConverter}}">
                         <materialDesign:ColorZone VerticalAlignment="Stretch" Mode="PrimaryDark">
                             <ItemsControl x:Name="ToolsItemsControl" prism:RegionManager.RegionName="{Binding ToolsRegionName}" />

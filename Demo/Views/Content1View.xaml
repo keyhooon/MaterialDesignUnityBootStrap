@@ -6,11 +6,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
     compositeContentNavigator:ViewManager.HeaderDisplay="Content1"
+    compositeContentNavigator:ViewManager.HeaderPackIcon="Signal"
     prism:ViewModelLocator.AutoWireViewModel="True">
-    <compositeContentNavigator:ViewManager.HeaderChipIcon>
-        <materialDesign:PackIcon Kind="Signal" />
-    </compositeContentNavigator:ViewManager.HeaderChipIcon>
     <Grid>
+
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

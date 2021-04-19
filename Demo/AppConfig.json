@@ -8,7 +8,7 @@
     "MainLoggerCategoryName": "MainLogger"
   },
   "ContentNavigator": {
-    "HasRoot": true,
+    "HasRoot": false,
     "RootDisplay": "Main Root",
     "ContentRegionName": "ContentRegion",
     "ToolbarRegionName": "ToolbarRegion",

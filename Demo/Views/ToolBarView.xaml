@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="{DynamicResource PrimaryHueDarkBrush}"
     Style="{StaticResource MaterialDesignToolBar}">
     <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Text="aaaa" />
     <Button Content="Button 1" />

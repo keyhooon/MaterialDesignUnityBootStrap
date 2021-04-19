@@ -15,8 +15,8 @@ using MaterialDesignUnityBootStrap.ViewModels;
 using Unity;
 using CommonServiceLocator;
     using CompositeContentNavigator;
+    using MaterialDesignThemes.Wpf.Transitions;
     using MaterialDesignUnityBootStrap.Config;
-    using MaterialDesignUnityBootStrap.RegionAdapter;
     using MaterialDesignUnityBootStrap.Services.Logging;
     using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -43,7 +43,7 @@ namespace MaterialDesignUnityBootStrap
         {
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
             regionAdapterMappings?.RegisterMapping(typeof(ToolBarTray), Container.Resolve<ToolBarTrayRegionAdapter>());
-            regionAdapterMappings?.RegisterMapping(typeof(StackPanel), Container.Resolve<StackPopupRegionAdapter>());
+
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

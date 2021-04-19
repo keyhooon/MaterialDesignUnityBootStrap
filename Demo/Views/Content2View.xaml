@@ -10,10 +10,10 @@
     <comopsiteMapNavigator:ViewManager.HeaderChipIcon>
         <materialDesign:PackIcon Kind="AcademicCap" />
     </comopsiteMapNavigator:ViewManager.HeaderChipIcon>
-    <Grid>
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="Content2" />
-    </Grid>
+        <Grid>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="Content2" />
+        </Grid>
 </UserControl>
