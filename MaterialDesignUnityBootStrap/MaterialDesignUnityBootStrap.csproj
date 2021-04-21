@@ -4,7 +4,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>MaterialDesignUnityBootStrap</AssemblyName>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/keyhooon/MaterialDesignUnityBootStrap</PackageProjectUrl>
     <RepositoryUrl>https://github.com/keyhooon/MaterialDesignUnityBootStrap</RepositoryUrl>
