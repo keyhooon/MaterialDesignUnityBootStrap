@@ -48,6 +48,7 @@ namespace MaterialDesignUnityBootStrap
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+
             var configurationRoot = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("AppConfig.json", optional: true, true).Build();
@@ -84,17 +85,18 @@ namespace MaterialDesignUnityBootStrap
         {
             var paletteHelper = new PaletteHelper();
             var theme = (Theme)paletteHelper.GetTheme();
-            theme.SetBaseTheme(Settings.Default.IsDark ? Theme.Dark : Theme.Light);
-            if(Settings.Default.PrimaryColor.HasValue)
-                theme.SetPrimaryColor(Settings.Default.PrimaryColor.Value);
-            if (Settings.Default.SecondaryColor.HasValue)
-                theme.SetSecondaryColor(Settings.Default.SecondaryColor.Value);
+            var themeSettings = ThemeSettings.Default;
+            theme.SetBaseTheme(themeSettings.IsDark ? Theme.Dark : Theme.Light);
+            if(themeSettings.PrimaryColor.HasValue)
+                theme.SetPrimaryColor(themeSettings.PrimaryColor.Value);
+            if (themeSettings.SecondaryColor.HasValue)
+                theme.SetSecondaryColor(themeSettings.SecondaryColor.Value);
             paletteHelper.SetTheme(theme);
 
         }
         protected override void OnExit(ExitEventArgs e)
         {
-            Settings.Default.Save();
+            ThemeSettings.Default.Save();
             base.OnExit(e);
         }
         

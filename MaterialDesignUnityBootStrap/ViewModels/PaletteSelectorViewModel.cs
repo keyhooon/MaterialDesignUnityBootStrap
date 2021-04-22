@@ -32,20 +32,20 @@ namespace MaterialDesignUnityBootStrap.ViewModels
         public bool IsDark
         {
             get => theme.Background == Theme.Dark.MaterialDesignBackground;
-            set { theme.SetBaseTheme(value ? Theme.Dark : Theme.Light); Settings.Default.IsDark = value; Settings.Default.Save(); paletteHelper.SetTheme(theme); RaisePropertyChanged(); }
+            set { theme.SetBaseTheme(value ? Theme.Dark : Theme.Light); ThemeSettings.Default.IsDark = value; ThemeSettings.Default.Save(); paletteHelper.SetTheme(theme); RaisePropertyChanged(); }
         }
 
         public IEnumerable<Swatch> Swatches { get; }
 
         public DelegateCommand<bool> ToggleBaseCommand => _toggleBaseCommand ??= new DelegateCommand<bool>(
-            (o) => { theme.SetBaseTheme(o ? Theme.Dark : Theme.Light); Settings.Default.IsDark = o; Settings.Default.Save(); paletteHelper.SetTheme(theme); });
+            (o) => { theme.SetBaseTheme(o ? Theme.Dark : Theme.Light); ThemeSettings.Default.IsDark = o; ThemeSettings.Default.Save(); paletteHelper.SetTheme(theme); });
 
         public DelegateCommand<Swatch> ApplyPrimaryCommand => _applyPrimaryCommand ??= new DelegateCommand<Swatch>(
-            swatch => { theme.SetPrimaryColor(swatch.ExemplarHue.Color); Settings.Default.PrimaryColor = swatch.ExemplarHue.Color; Settings.Default.Save(); paletteHelper.SetTheme(theme); });
+            swatch => { theme.SetPrimaryColor(swatch.ExemplarHue.Color); ThemeSettings.Default.PrimaryColor = swatch.ExemplarHue.Color; ThemeSettings.Default.Save(); paletteHelper.SetTheme(theme); });
 
 
         public DelegateCommand<Swatch> ApplyAccentCommand => _applyAccentCommand ??= new DelegateCommand<Swatch>(
-            swatch => { theme.SetSecondaryColor(swatch.AccentExemplarHue.Color); Settings.Default.SecondaryColor = swatch.AccentExemplarHue.Color; Settings.Default.Save(); paletteHelper.SetTheme(theme); });
+            swatch => { theme.SetSecondaryColor(swatch.AccentExemplarHue.Color); ThemeSettings.Default.SecondaryColor = swatch.AccentExemplarHue.Color; ThemeSettings.Default.Save(); paletteHelper.SetTheme(theme); });
 
         public DelegateCommand OkCommand => _okCommand ??= new DelegateCommand(() => { 
             RequestClose(new DialogResult(ButtonResult.OK)); 
