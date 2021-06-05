@@ -66,8 +66,8 @@
                     DockPanel.Dock="Top"
                     Mode="PrimaryMid">
                     <i:Interaction.Behaviors>
-                        <xamlBehaviors:DragMoveBehavior />
-                        <xamlBehaviors:WindowMaximizerBehavior />
+                        <infrastructure:DragMoveBehavior />
+                        <infrastructure:WindowMaximizerBehavior />
                     </i:Interaction.Behaviors>
                     <DockPanel>
                         <ToggleButton

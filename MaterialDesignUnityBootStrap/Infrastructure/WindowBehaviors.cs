@@ -9,7 +9,11 @@ namespace MaterialDesignUnityBootStrap.Infrastructure
         protected override void OnAttached()
         {
             base.OnAttached();
-            AssociatedObject.MouseDown += (sender, args) => Window.GetWindow(AssociatedObject)?.DragMove();
+            AssociatedObject.MouseLeftButtonDown += (sender, args) =>
+            {
+                if (args.LeftButton == System.Windows.Input.MouseButtonState.Pressed && sender == AssociatedObject)
+                    Window.GetWindow(AssociatedObject)?.DragMove();
+            };
         }
     }
     public class WindowMaximizerBehavior : Behavior<UIElement>
@@ -17,9 +21,9 @@ namespace MaterialDesignUnityBootStrap.Infrastructure
         protected override void OnAttached()
         {
             base.OnAttached();
-            AssociatedObject.MouseDown += (sender, args) =>
+            AssociatedObject.MouseLeftButtonDown += (sender, args) =>
             {
-                if (args.ClickCount == 2)
+                if (args.ClickCount == 2 && sender == AssociatedObject)
                 {
                     var window = Window.GetWindow(AssociatedObject);
                     Debug.Assert(window != null, nameof(window) + " != null");
