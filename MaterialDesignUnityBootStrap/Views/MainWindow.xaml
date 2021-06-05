@@ -87,9 +87,8 @@
                             Margin="10,0,20,0"
                             VerticalAlignment="Center"
                             FontFamily="Century Schoolbook"
-                            Foreground="{DynamicResource MaterialDesignBody}"
                             Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                            Text="asdasdas" />
+                            Text="{Binding Header}" />
                         <Button
                             Width="32"
                             Height="32"
@@ -189,7 +188,6 @@
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <ToolBarTray
-                    MinHeight="75"
                     prism:RegionManager.RegionName="{Binding ToolbarRegionName}"
                     Background="{DynamicResource MaterialDesignPaper}"
                     DockPanel.Dock="Top">
@@ -218,7 +216,10 @@
                             <ColumnDefinition Width="10" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <ListBox Grid.Column="5" prism:RegionManager.RegionName="{Binding PopupToolBarRegionName}">
+                        <ListBox
+                            Grid.Column="5"
+                            prism:RegionManager.RegionName="{Binding PopupToolBarRegionName}"
+                            Style="{StaticResource MaterialDesignCardsListBox}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" />
@@ -252,6 +253,31 @@
                                     </ContentControl>
                                 </ItemContainerTemplate>
                             </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="SnapsToDevicePixels" Value="True" />
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <ContentControl
+                                                    Content="{TemplateBinding Content}"
+                                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                    Focusable="False" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
                         </ListBox>
 
                         <Separator
@@ -265,14 +291,13 @@
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     FontWeight="Light"
-                                    Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                    Style="{StaticResource MaterialDesignBody1TextBlock}"
                                     Text="{Binding ., StringFormat='{}{0:h:mm tt}'}" />
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     FontWeight="Light"
-                                    Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                    Style="{StaticResource MaterialDesignBody1TextBlock}"
                                     Text="{Binding Date, StringFormat='{}{0:M/dd/yyyy}'}" />
-
                             </StackPanel>
                         </ContentControl>
                     </Grid>

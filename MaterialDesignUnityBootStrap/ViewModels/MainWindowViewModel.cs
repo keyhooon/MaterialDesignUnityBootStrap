@@ -25,9 +25,7 @@ namespace MaterialDesignUnityBootStrap.ViewModels
             _dialogService = dialogService;
             _mainWindowOptions = mainWindowOptions;
 
-            var timer = new DispatcherTimer(DispatcherPriority.Background,Dispatcher.CurrentDispatcher);
-            timer.Tick += (sender, args) => RaisePropertyChanged(nameof(DateTimeNow));
-            timer.Start();
+            var timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background, (sender, args) => RaisePropertyChanged(nameof(DateTimeNow)), Dispatcher.CurrentDispatcher);
         }
 
 
