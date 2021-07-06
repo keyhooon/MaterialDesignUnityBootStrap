@@ -7,9 +7,10 @@
     "ToolsRegionName": "ToolsRegion",
     "MainLoggerCategoryName": "MainLogger"
   },
-  "ContentNavigator": {
-    "HasRoot": false,
-    "RootDisplay": "Main Root",
+  "ContentNavigatorOptions": {
+    "HasRoot": true,
+    "RootPackIcon": "AboutOutline",
+    "RootDisplay": "Main",
     "ContentRegionName": "ContentRegion",
     "ToolbarRegionName": "ToolbarRegion",
     "ContentMapRegionName": "ContentMapRegion",

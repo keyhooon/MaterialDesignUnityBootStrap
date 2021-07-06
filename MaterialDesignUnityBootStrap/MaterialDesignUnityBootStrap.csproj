@@ -11,13 +11,19 @@
     <RepositoryType>Github</RepositoryType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="RegionAdapter\**" />
+    <EmbeddedResource Remove="RegionAdapter\**" />
+    <None Remove="RegionAdapter\**" />
+    <Page Remove="RegionAdapter\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\certificate.png" />
     <None Remove="Assets\PARALLELPOWER-01.png" />
     <None Remove="Views\ab_chip_circuit_sd88dhikx-678x381.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
-    <PackageReference Include="CompositeContentNavigator" Version="1.0.8" />
+    <PackageReference Include="CompositeContentNavigator" Version="1.0.9" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.1" />
     <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
@@ -28,6 +34,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="5.0.0" />
     <PackageReference Include="Prism.Microsoft.DependencyInjection.Extensions" Version="8.0.62" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="WpfInfrastructure" Version="1.0.2" />
@@ -47,9 +54,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Update="ContentNavigatorConfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,6 +103,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LoadingIndicator\Themes\" />
-    <Folder Include="RegionAdapter\" />
   </ItemGroup>
 </Project>

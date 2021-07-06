@@ -9,11 +9,11 @@ namespace MaterialDesignUnityBootStrap.Services.Logging
     {
         private readonly IEventAggregator _logEventAgreggator;
         private readonly string _name;
-        private readonly PubSubEventLoggerOption _option;
+        private readonly PubSubEventLoggerOptions _option;
 
         public PubSubEventLogger(
             string name,
-            PubSubEventLoggerOption option, IEventAggregator eventAggregator)
+            PubSubEventLoggerOptions option, IEventAggregator eventAggregator)
         {
             (_name, _option, _logEventAgreggator) = (name, option, eventAggregator);
         }

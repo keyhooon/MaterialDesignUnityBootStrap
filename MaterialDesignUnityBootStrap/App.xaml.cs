@@ -58,10 +58,12 @@ namespace MaterialDesignUnityBootStrap
                 .RegisterInstance(configurationRoot)
                 .RegisterServices(s =>
                 {
-                    s.Configure<MainWindowOptions>(configurationRoot.GetSection(nameof(MainWindowOptions)));
-                    s.Configure<PubSubEventLoggerOption>(configurationRoot.GetSection(nameof(PubSubEventLoggerOption)));
-                    s.Configure<ContentNavigatorOption>(configurationRoot.GetSection(nameof(ContentNavigatorOption)));
-                   
+                    s.AddOptions<ContentNavigatorOptions>()
+                        .Bind(configurationRoot.GetSection(nameof(ContentNavigatorOptions))).ValidateDataAnnotations();
+                    ; s.AddOptions<MainWindowOptions>()
+                        .Bind(configurationRoot.GetSection(nameof(MainWindowOptions))).ValidateDataAnnotations();
+                    ;
+                  
                     s.AddLogging(logging =>
                     {
                         logging.ClearProviders();
@@ -70,7 +72,6 @@ namespace MaterialDesignUnityBootStrap
                         logging.AddConfiguration(configurationRoot);
                     });
                 });
-
             containerRegistry.RegisterDialog<PaletteSelector, PaletteSelectorViewModel>(typeof(PaletteSelector).FullName);
             containerRegistry.RegisterDialogWindow<DialogWindow>();
         }
@@ -78,7 +79,7 @@ namespace MaterialDesignUnityBootStrap
         {
             base.ConfigureModuleCatalog(moduleCatalog);
 
-            moduleCatalog.AddModule<CompositeContentNavigator.ContentNavigatorModule>();
+            moduleCatalog.AddModule<ContentNavigatorModule>();
 
         }
         private void LoadTheme()

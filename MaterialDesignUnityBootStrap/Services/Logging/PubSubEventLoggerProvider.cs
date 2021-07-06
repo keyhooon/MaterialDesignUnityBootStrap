@@ -7,13 +7,13 @@ namespace MaterialDesignUnityBootStrap.Services.Logging
 {
     public sealed class PubSubEventLoggerProvider : ILoggerProvider
     {
-        private readonly PubSubEventLoggerOption _option;
+        private readonly PubSubEventLoggerOptions _option;
         private readonly IEventAggregator _eventAggregator;
 
         private readonly ConcurrentDictionary<string, PubSubEventLogger> _loggers =
             new ConcurrentDictionary<string, PubSubEventLogger>();
 
-        public PubSubEventLoggerProvider(PubSubEventLoggerOption option, IEventAggregator eventAggregator)
+        public PubSubEventLoggerProvider(PubSubEventLoggerOptions option, IEventAggregator eventAggregator)
         {
             _option = option;
             _eventAggregator = eventAggregator;

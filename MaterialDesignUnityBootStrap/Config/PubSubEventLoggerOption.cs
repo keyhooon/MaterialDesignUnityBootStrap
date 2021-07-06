@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MaterialDesignUnityBootStrap.Config
 {
-    public class PubSubEventLoggerOption
+    public class PubSubEventLoggerOptions
     {
     }
 }

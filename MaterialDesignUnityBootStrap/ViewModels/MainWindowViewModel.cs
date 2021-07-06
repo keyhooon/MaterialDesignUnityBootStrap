@@ -15,38 +15,75 @@ namespace MaterialDesignUnityBootStrap.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private readonly IOptions<ContentNavigatorOption> _compositeContentNavigatorOptions;
+        private readonly IOptions<ContentNavigatorOptions> _ContentNavigatorOptions;
         private readonly IDialogService _dialogService;
         private readonly IOptions<MainWindowOptions> _mainWindowOptions;
 
-        public MainWindowViewModel(IDialogService dialogService, IOptions<ContentNavigatorOption> compositeContentNavigatorOptions, IOptions<MainWindowOptions> mainWindowOptions)
+        public MainWindowViewModel(IDialogService dialogService, IOptions<ContentNavigatorOptions> contentNavigatorOptions, IOptions<MainWindowOptions> mainWindowOptions)
         {
-            _compositeContentNavigatorOptions = compositeContentNavigatorOptions;
-            _dialogService = dialogService;
             _mainWindowOptions = mainWindowOptions;
+            _ContentNavigatorOptions = contentNavigatorOptions;
+            _dialogService = dialogService;
 
+            ToolbarRegionName = _ContentNavigatorOptions.Value.ToolbarRegionName;
+            Header = _mainWindowOptions.Value.Name;
+            PaletteSelectorVisibility = _mainWindowOptions.Value.PaletteSelectorVisibility ? Visibility.Visible : Visibility.Collapsed;
+            NavigationButtonVisibility = _mainWindowOptions.Value.NavigationButtonVisibility ? Visibility.Visible : Visibility.Collapsed;
+            ToolsRegionName = _mainWindowOptions.Value.ToolsRegionName;
+            ContentRegionName = _ContentNavigatorOptions.Value.ContentRegionName;
+            PopupToolBarRegionName = _mainWindowOptions.Value.PopupToolBarRegionName;
+            ContentMapRegionName = _ContentNavigatorOptions.Value.ContentMapRegionName;
+            HeaderRegionName = _ContentNavigatorOptions.Value.HeaderRegionName;
             var timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background, (sender, args) => RaisePropertyChanged(nameof(DateTimeNow)), Dispatcher.CurrentDispatcher);
         }
 
 
         public DateTime DateTimeNow => DateTime.Now;
 
-        public string Header => _mainWindowOptions.Value.Name;
+        public string Header
+        {
+            get;
+        }
 
-        public Visibility PaletteSelectorVisibility =>
-            _mainWindowOptions.Value.PaletteSelectorVisibility ? Visibility.Visible : Visibility.Collapsed;
-        public Visibility NavigationButtonVisibility =>
-            _mainWindowOptions.Value.NavigationButtonVisibility ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility PaletteSelectorVisibility
+        {
+            get;
+        }
 
-        public string ToolbarRegionName => _compositeContentNavigatorOptions.Value.ToolbarRegionName;
-        public string ToolsRegionName => _mainWindowOptions.Value.ToolsRegionName;
+        public Visibility NavigationButtonVisibility
+        {
+            get;
+        }
 
-        public string ContentRegionName => _compositeContentNavigatorOptions.Value.ContentRegionName;
+        public string ToolbarRegionName
+        {
+            get;
+        }
 
-        public string PopupToolBarRegionName => _mainWindowOptions.Value.PopupToolBarRegionName;
-        public string ContentMapRegionName => _compositeContentNavigatorOptions.Value.ContentMapRegionName;
+        public string ToolsRegionName
+        {
+            get;
+        }
 
-        public string HeaderRegionName => _compositeContentNavigatorOptions.Value.HeaderRegionName;
+        public string ContentRegionName
+        {
+            get;
+        }
+
+        public string PopupToolBarRegionName
+        {
+            get;
+        }
+
+        public string ContentMapRegionName
+        {
+            get;
+        }
+
+        public string HeaderRegionName
+        {
+            get;
+        }
 
         private DelegateCommand _paletteSelectorShowCommand;
 
