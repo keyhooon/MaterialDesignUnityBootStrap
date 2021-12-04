@@ -2,10 +2,8 @@
 using System.Windows;
 using System.Windows.Threading;
 using CompositeContentNavigator;
-using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.Config;
 using MaterialDesignUnityBootStrap.Views;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -34,58 +32,34 @@ namespace MaterialDesignUnityBootStrap.ViewModels
             PopupToolBarRegionName = _mainWindowOptions.Value.PopupToolBarRegionName;
             ContentMapRegionName = _ContentNavigatorOptions.Value.ContentMapRegionName;
             HeaderRegionName = _ContentNavigatorOptions.Value.HeaderRegionName;
-            var timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background, (sender, args) => RaisePropertyChanged(nameof(DateTimeNow)), Dispatcher.CurrentDispatcher);
+            var timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background, (_, _) => RaisePropertyChanged(nameof(DateTimeNow)), Dispatcher.CurrentDispatcher);
+
         }
 
 
         public DateTime DateTimeNow => DateTime.Now;
 
-        public string Header
-        {
-            get;
-        }
+        public string Header { get; }
 
-        public Visibility PaletteSelectorVisibility
-        {
-            get;
-        }
+        public Visibility PaletteSelectorVisibility { get; }
 
-        public Visibility NavigationButtonVisibility
-        {
-            get;
-        }
+        public Visibility NavigationButtonVisibility { get; }
 
-        public string ToolbarRegionName
-        {
-            get;
-        }
+        public string ToolbarRegionName { get; }
 
-        public string ToolsRegionName
-        {
-            get;
-        }
+        public string ToolsRegionName { get; }
 
-        public string ContentRegionName
-        {
-            get;
-        }
+        public string ContentRegionName { get; }
 
-        public string PopupToolBarRegionName
-        {
-            get;
-        }
+        public string PopupToolBarRegionName { get; }
 
-        public string ContentMapRegionName
-        {
-            get;
-        }
+        public string ContentMapRegionName { get; }
 
-        public string HeaderRegionName
-        {
-            get;
-        }
+        public string HeaderRegionName { get; }
 
         private DelegateCommand _paletteSelectorShowCommand;
+        private DelegateCommand _loginShowCommand;
+        private DelegateCommand _aboutShowCommand;
 
 
         /// <summary>
@@ -98,11 +72,31 @@ namespace MaterialDesignUnityBootStrap.ViewModels
                 return _paletteSelectorShowCommand ??= new DelegateCommand(
                     () =>
                     {
-                        var view = new PaletteSelector();
+                        _dialogService.Show(typeof(PaletteSelector).FullName,new DialogParameters(),(o)=> { });
+                    });
+            }
+        }
 
-                        //var result = await DialogHost.Show(view);
-                        //show the dialog
-                        _dialogService.ShowDialog(typeof(PaletteSelector).FullName,new DialogParameters("title=Themes"),(o)=> { });
+        public DelegateCommand LoginShowCommand
+        {
+            get
+            {
+                return _loginShowCommand ??= new DelegateCommand(
+                    () =>
+                    {
+                        _dialogService.Show(typeof(LoginView).FullName, new DialogParameters(), (o) => { });
+                    });
+            }
+        }
+
+        public DelegateCommand AboutShowCommand
+        {
+            get
+            {
+                return _aboutShowCommand ??= new DelegateCommand(
+                    () =>
+                    {
+                        _dialogService.Show(typeof(AboutView).FullName, new DialogParameters(), (o) => { });
                     });
             }
         }

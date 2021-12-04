@@ -1,0 +1,64 @@
+<UserControl
+    x:Class="MaterialDesignUnityBootStrap.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="http://prismlibrary.com/"
+    Height="240"
+    mvvm:ViewModelLocator.AutoWireViewModel="True">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Image
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Source="ab_chip_circuit_sd88dhikx-678x381.jpg"
+            Stretch="Uniform" />
+        <StackPanel
+            Grid.Column="1"
+            VerticalAlignment="Bottom"
+            Orientation="Vertical">
+            <TextBlock
+                Grid.Column="1"
+                Margin="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                Text="{Binding Header}"
+                TextWrapping="Wrap" />
+            <WrapPanel HorizontalAlignment="Right">
+                <Button
+                    Width="180"
+                    Margin="5"
+                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                    IsDefault="True"
+                    Style="{StaticResource MaterialDesignOutlinedButton}">
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                            False
+                        </system:Boolean>
+                    </Button.CommandParameter>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Kind="WindowClose" />
+                        <TextBlock VerticalAlignment="Center" Text="Close" />
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

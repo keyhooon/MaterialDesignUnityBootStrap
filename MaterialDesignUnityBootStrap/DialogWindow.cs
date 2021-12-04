@@ -28,28 +28,28 @@ namespace MaterialDesignUnityBootStrap
 
         public void Show()
         {
-            Owner.ShowDialog(Content, OpendEventHandler, ClosingEventHandler);
+            Owner.ShowDialog(Content, OpenedEventHandler, ClosingEventHandler);
 
         }
 
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
             var cancel = new CancelEventArgs();
-            Closing(this, cancel);
+            Closing?.Invoke(this, cancel);
             if (!cancel.Cancel)
-                Closed(this, EventArgs.Empty);
+                Closed?.Invoke(this, EventArgs.Empty);
 
         }
 
-        private void OpendEventHandler(object sender, DialogOpenedEventArgs eventArgs)
+        private void OpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
         {
             Loaded(this, new RoutedEventArgs());
         }
 
-        public  bool? ShowDialog()
+        public bool? ShowDialog()
         {
-           DialogHost.Show(Content, OpendEventHandler, ClosingEventHandler);
-            return null; 
+           DialogHost.Show(Content, OpenedEventHandler, ClosingEventHandler);
+           return (bool?)false; 
         }
 
     }

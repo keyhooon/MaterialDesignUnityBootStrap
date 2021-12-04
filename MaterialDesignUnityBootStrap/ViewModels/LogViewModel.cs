@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MaterialDesignUnityBootStrap.Config;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using MaterialDesignUnityBootStrap.Services.Logging;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Prism.Events;
 using Prism.Mvvm;
 
@@ -19,13 +12,14 @@ namespace MaterialDesignUnityBootStrap.ViewModels
         public ObservableCollection<LogEventMessage> LogEventMessagesList { get; }
         public LogViewModel(IEventAggregator eventAggregator)
         {
-            eventAggregator.GetEvent<LogPubSubEvent>().Subscribe(LogEventRaised);
+            eventAggregator.GetEvent<LogPubSubEvent>().Subscribe( o => Application.Current.Dispatcher.Invoke(()=>LogEventRaised(o)));
             LogEventMessagesList = new ObservableCollection<LogEventMessage>();
         }
 
         private void LogEventRaised(LogEventMessage message)
         {
-            LogEventMessagesList.Add(message);
+            if (message.LogLevel > LogLevel.Error)
+                LogEventMessagesList.Add(message);
         }
     }
 }
