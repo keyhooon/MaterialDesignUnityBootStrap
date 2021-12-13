@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MaterialDesignUnityBootStrap.Config
+﻿namespace MaterialDesignUnityBootStrap.Config
 {
     public class MainWindowOptions
     {

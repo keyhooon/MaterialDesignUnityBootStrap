@@ -1,5 +1,4 @@
 ﻿    using System;
-    using System.ComponentModel;
     using Prism.Ioc;
 using MaterialDesignUnityBootStrap.Views;
 using System.Windows;
@@ -7,8 +6,6 @@ using System.Windows.Controls;
 
 using Prism.Regions;
 using System.IO;
-    using System.Linq;
-    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Configuration;
@@ -17,22 +14,15 @@ using CompositeContentNavigator.Infrastructure;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignUnityBootStrap.ViewModels;
     using CompositeContentNavigator;
-    using MahApps.Metro.Controls;
-    using MahApps.Metro.Controls.Dialogs;
-    using MaterialDesignThemes.Wpf.Transitions;
     using MaterialDesignUnityBootStrap.Config;
-    using MaterialDesignUnityBootStrap.Infrastructure;
     using MaterialDesignUnityBootStrap.Services.Authentication;
     using MaterialDesignUnityBootStrap.Services.Logging;
     using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Logging.Console;
-    using Microsoft.Extensions.Options;
     using Prism.Events;
     using Prism.Services.Dialogs;
     using Prism.Unity;
     using Unity;
-    using Unity.Extension;
     using DispatcherUnhandledExceptionEventArgs = System.Windows.Threading.DispatcherUnhandledExceptionEventArgs;
 
     namespace MaterialDesignUnityBootStrap

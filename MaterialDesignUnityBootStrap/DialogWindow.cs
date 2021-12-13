@@ -1,11 +1,8 @@
 ﻿using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows;
 using MaterialDesignThemes.Wpf;
-using System.Threading.Tasks;
 
 namespace MaterialDesignUnityBootStrap
 {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MaterialDesignUnityBootStrap.DataModels;
 
@@ -20,9 +18,9 @@ namespace MaterialDesignUnityBootStrap.Services.Authentication
 
         private User _currentUser;
 
-        public async Task<IEnumerable<string>> GetAllUserName()
+        public async Task<IList<string>> GetAllUserName()
         {
-            return await _authenticationService.GetUserListAsync();
+            return (await _authenticationService.GetUserListAsync()).ToList();
         } 
 
         public async Task LoginAsync(string userName, string password)

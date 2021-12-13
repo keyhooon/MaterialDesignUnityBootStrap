@@ -242,6 +242,7 @@
                                                 <materialDesign:PackIcon
                                                     Width="24"
                                                     Height="24"
+                                                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
                                                     Kind="{Binding (compositeContentNavigator:ViewManager.HeaderPackIcon)}" />
                                             </materialDesign:PopupBox.ToggleContent>
                                             <materialDesign:PopupBox.PopupContent>
@@ -308,6 +309,10 @@
 
                 </materialDesign:ColorZone>
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="auto" IsEnabled="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty}" />
@@ -371,21 +376,12 @@
                         Margin="0,15"
                         ResizeBehavior="PreviousAndNext"
                         Visibility="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty, Converter={StaticResource InverseBoolToVisConverter}}" />
-                    <ItemsControl
-                        x:Name="ToolsItemsControl"
+                    <ScrollViewer
                         Grid.Column="2"
                         Margin="15"
-                        prism:RegionManager.RegionName="{Binding ToolsRegionName}"
-                        Visibility="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty, Converter={StaticResource InverseBoolToVisConverter}}" />
-                    <!--  <materialDesign:Card  -->
-                    <!--  Grid.Column="2"  -->
-                    <!--  Margin="15"  -->
-                    <!--  Visibility="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty, Converter={StaticResource InverseBoolToVisConverter}}">  -->
-                    <!--     <materialDesign:ColorZone VerticalAlignment="Stretch" Mode="PrimaryMid"> -->
-                    <!--         <ItemsControl x:Name="ToolsItemsControl" prism:RegionManager.RegionName="{Binding ToolsRegionName}" /> -->
-                    <!--    -->
-                    <!--     </materialDesign:ColorZone> -->
-                    <!-- </materialDesign:Card> -->
+                        Visibility="{Binding ElementName=ToolsItemsControl, Path=Items.IsEmpty, Converter={StaticResource InverseBoolToVisConverter}}">
+                        <ItemsControl x:Name="ToolsItemsControl" prism:RegionManager.RegionName="{Binding ToolsRegionName}" />
+                    </ScrollViewer>
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
