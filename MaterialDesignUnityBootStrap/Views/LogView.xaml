@@ -12,7 +12,7 @@
     MinWidth="300"
     MinHeight="200"
     MaxHeight="500"
-    compositeContentNavigator:ViewManager.HeaderPackIcon="BugReport"
+    compositeContentNavigator:ViewManager.HeaderPackIcon="Alert"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mvvm:ViewModelLocator.AutoWireViewModel="True"

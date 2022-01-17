@@ -236,19 +236,19 @@
                                             PlacementMode="TopAndAlignCentres"
                                             PopupMode="Click"
                                             StaysOpen="True"
-                                            Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                            Style="{StaticResource MaterialDesignToolForegroundPopupBox}"
                                             ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
                                             <materialDesign:PopupBox.ToggleContent>
                                                 <materialDesign:PackIcon
                                                     Width="24"
                                                     Height="24"
-                                                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                                                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
                                                     Kind="{Binding (compositeContentNavigator:ViewManager.HeaderPackIcon)}" />
                                             </materialDesign:PopupBox.ToggleContent>
                                             <materialDesign:PopupBox.PopupContent>
                                                 <materialDesign:Card
-                                                    Margin="35"
-                                                    Padding="5"
+                                                    Margin="-5"
+                                                    materialDesign:ColorZoneAssist.Mode="Light"
                                                     materialDesign:ShadowAssist.ShadowDepth="Depth3">
                                                     <ContentPresenter Content="{Binding}" />
                                                 </materialDesign:Card>
@@ -296,12 +296,12 @@
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     FontWeight="Light"
-                                    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     Text="{Binding ., StringFormat='{}{0:h:mm tt}'}" />
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     FontWeight="Light"
-                                    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     Text="{Binding Date, StringFormat='{}{0:M/dd/yyyy}'}" />
                             </StackPanel>
                         </ContentControl>

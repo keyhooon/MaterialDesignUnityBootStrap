@@ -98,7 +98,7 @@ using Microsoft.Extensions.Logging;
                 eventWaitHandle.WaitOne();
                 Container.Resolve<IModuleManager>().Run();
             });
-            splashMessage.Report(string.Empty);
+            await Dispatcher.InvokeAsync(()=>splashMessage.Report(string.Empty));
             await Task.Delay(200);
             if (Container.IsRegistered<UserManager>())
                 dialogService.Show(typeof(LoginView).FullName, new DialogParameters(), result =>

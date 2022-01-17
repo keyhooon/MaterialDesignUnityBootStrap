@@ -10,8 +10,7 @@ namespace MaterialDesignUnityBootStrap.Services.Logging
         private readonly PubSubEventLoggerOptions _option;
         private readonly IEventAggregator _eventAggregator;
 
-        private readonly ConcurrentDictionary<string, PubSubEventLogger> _loggers =
-            new ConcurrentDictionary<string, PubSubEventLogger>();
+        private readonly ConcurrentDictionary<string, PubSubEventLogger> _loggers = new();
 
         public PubSubEventLoggerProvider(PubSubEventLoggerOptions option, IEventAggregator eventAggregator)
         {
