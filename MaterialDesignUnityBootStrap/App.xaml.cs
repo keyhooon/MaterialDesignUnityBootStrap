@@ -50,9 +50,7 @@ using Microsoft.Extensions.Logging;
             }
         }
 
-        private void App_DispatcherUnhandledException(
-            object sender,
-            DispatcherUnhandledExceptionEventArgs e)
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             LogEventAggregator?.GetEvent<LogPubSubEvent>()?.Publish(new LogEventMessage(LogLevel.Critical, 0, e.Exception.ToString()));
             e.Handled = true;
@@ -78,52 +76,45 @@ using Microsoft.Extensions.Logging;
             eventWaitHandle = new AutoResetEvent(false);
             splashMessage = new Progress<string>();
             base.OnStartup(e);
-            Task.Run(() =>
-            {
-                DispatcherUnhandledException += App_DispatcherUnhandledException;
-                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-                // check mutex for one instance of application exist in same time
-                _mutex = new Mutex(false, AppGuid.ToString());
-                if (!_mutex.WaitOne(0, false))
-                    Current.Shutdown();
-            });
+            // check mutex for one instance of application exist in same time
+            _mutex = new Mutex(false, AppGuid.ToString());
+            if (!_mutex.WaitOne(0, false))
+                Current.Shutdown();
+
         }
 
 
         protected override async void InitializeModules()
         {
+#pragma warning disable 4014
             await Task.Run(() =>
+#pragma warning restore 4014
             {
                 eventWaitHandle.WaitOne();
-                Container.Resolve<IModuleManager>().Run();
+                var moduleManager = Container.Resolve<IModuleManager>();
+                moduleManager.LoadModuleCompleted += OnModuleManagerOnLoadModuleCompleted;
+                moduleManager.Run();
+                moduleManager.LoadModuleCompleted -= OnModuleManagerOnLoadModuleCompleted;
             });
-            await Dispatcher.InvokeAsync(()=>splashMessage.Report(string.Empty));
+            splashMessage.Report(string.Empty);
             await Task.Delay(200);
             if (Container.IsRegistered<UserManager>())
                 dialogService.Show(typeof(LoginView).FullName, new DialogParameters(), result =>
                 {
                     if (result.Result == ButtonResult.Cancel)
-                        Application.Current.Shutdown();
+                        Current.Shutdown();
                 });
         }
+        private void OnModuleManagerOnLoadModuleCompleted(object _, LoadModuleCompletedEventArgs args) => splashMessage.Report($"{args.ModuleInfo.ModuleName} is Loaded.\r\n");
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
-
             dialogService = Container.Resolve<IDialogService>();
-            dialogService.Show(typeof(SplashScreenView).FullName, new DialogParameters { { "report", splashMessage } },
-                (o) =>
-                {
-                    
-
-                });
-            Container.Resolve<IModuleManager>().LoadModuleCompleted += (_, args) =>
-            {
-                splashMessage.Report($"{args.ModuleInfo.ModuleName} is Loaded.\r\n");
-            };
-
+            dialogService.Show(typeof(SplashScreenView).FullName, new DialogParameters { { "report", splashMessage } }, (o) => { });
             eventWaitHandle.Set();
         }
 

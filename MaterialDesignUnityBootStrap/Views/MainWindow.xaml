@@ -237,7 +237,7 @@
                                             PopupMode="Click"
                                             StaysOpen="True"
                                             Style="{StaticResource MaterialDesignToolForegroundPopupBox}"
-                                            ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                                            ToolTip="{Binding (compositeContentNavigator:ViewManager.HeaderDisplay)}">
                                             <materialDesign:PopupBox.ToggleContent>
                                                 <materialDesign:PackIcon
                                                     Width="24"
