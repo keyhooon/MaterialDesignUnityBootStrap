@@ -41,7 +41,7 @@
                 Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
             <PasswordBox
                 Margin="10"
-                HorizontalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 infrastructure:PasswordHelper.Attach="True"
                 infrastructure:PasswordHelper.Password="{Binding Password, Mode=TwoWay}"
